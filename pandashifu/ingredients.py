@@ -1,8 +1,6 @@
 from dash import Dash, dash_table, dcc, html, Input, Output, State, callback
 import dash_bootstrap_components as dbc
 
-import pyperclip
-
 
 def std_button(label, id, inline=True, width=80, disabled=False):
 
@@ -146,9 +144,7 @@ def sidebar_switch(label, options, id, disabled=False):
     return html.Div([text, item], id=f"{id}_div", style=switch_div_style)
 
 
-
 def code_box(code_string, id):
-
     code = dcc.Markdown(code_string, id=f'{id}_code', style={'width': 725})
     clipboard = dcc.Clipboard(id=f'{id}_copy')
 
@@ -163,10 +159,18 @@ def code_box(code_string, id):
               State(f'{id}_code', 'children'),
               prevent_initial_call=True)
     def update_display(n_clicks, content):
-
         if n_clicks is not None:
             code_string = content.replace('```python\n', '').replace('\n```', '')
-            pyperclip.copy(code_string)
+            try:
+                import tkinter as tk
+                root = tk.Tk()
+                root.withdraw()  # Hide the main window
+                root.clipboard_clear()
+                root.clipboard_append(code_string)
+                root.update()  # Required for clipboard to work
+                root.destroy()
+            except Exception:
+                pass  # Silently fail if clipboard access fails
 
     return html.Div([dcc.Markdown('**Code**:'),
                      dbc.Row(row, align='start', justify='between', style=code_style)])

@@ -29,7 +29,6 @@ The current version of **```PandaShifu```** is compatible with Python 3.9 or abo
 - [pandas](https://pandas.pydata.org/) >= 2.2.2
 - [plotly](https://plotly.com/) >= 5.23.0
 - [pygwalker](https://kanaries.net/pygwalker) >= 0.4.9
-- [pyperclip](https://pyperclip.readthedocs.io/en/latest/) >= 1.9.0
 - [scikit-learn](https://scikit-learn.org/stable/) >= 1.4.2
 - [seaborn](https://seaborn.pydata.org/) >= 0.13.2
 - [statsmodels](https://www.statsmodels.org/stable/index.html) >= 0.14.2
